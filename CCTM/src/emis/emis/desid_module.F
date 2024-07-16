@@ -233,12 +233,14 @@ C Initialize Online Lightning NOx Emissions
             CALL M3EXIT ( PNAME, JDATE, JTIME, XMSG, XSTAT1 )
          END IF
 
-C Initialize Aerosol Emissions         
+C Initialize Aerosol Emissions
+#ifndef carbon
          CALL LOG_SUBHEADING( LOGDEV,'Process Aerosol Emissions' )
          IF ( .NOT. AERO_EMIS_INIT( JDATE, JTIME, TSTEP ) ) THEN
             XMSG = 'Failure initializing aerosol emissions module'
             CALL M3EXIT ( PNAME, JDATE, JTIME, XMSG, XSTAT1 )
          END IF
+#endif
 
 C Map the Emission Variables Available on the Input Files To the
 C CMAQ Species Identified by the User via the Namelists and Stop the model
@@ -666,7 +668,9 @@ C Retrieve Emissions from All Stream Types
                ! Calculate Number and Surface Area Emissions for this
                ! stream. Convert aerosol mass emissions from g/s to
                ! ug/m3/s.
+#ifndef carbon
                CALL DESID_SIZE_DIST( ISRM, VDEMIS_SCALED, NL )
+#endif
 
              ! Retrieve Point Source Emissions Streams
              CASE ( 2 )
@@ -680,7 +684,9 @@ C Retrieve Emissions from All Stream Types
                ! Calculate Number and Surface Area Emissions for this
                ! stream. Convert aerosol mass emissions from g/s to
                ! ug/m3/s.
+#ifndef carbon
                CALL DESID_SIZE_DIST( ISRM, VDEMIS_SCALED, NL )
+#endif
 
              CASE ( 4 )
                NL = 1
@@ -733,7 +739,9 @@ C Retrieve Emissions from All Stream Types
                ! Calculate Number and Surface Area Emissions for this
                ! stream. Convert aerosol mass emissions from g/m3/s to
                ! ug/m3/s.
+#ifndef carbon
                CALL DESID_SIZE_DIST( ISRM, VDEMIS_SCALED, NL )
+#endif
 
              ! Retrieve Wind-Blown Dust Emissions
              CASE ( 8 )
@@ -750,7 +758,9 @@ C Retrieve Emissions from All Stream Types
                ! Calculate Number and Surface Area Emissions for this
                ! stream. Convert aerosol mass emissions from g/m3/s to
                ! ug/m3/s.
+#ifndef carbon
                CALL DESID_SIZE_DIST( ISRM, VDEMIS_SCALED, NL )
+#endif
 
              ! Retrieve MEGAN Emissions
              CASE ( 9 )

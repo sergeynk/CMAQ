@@ -1,0 +1,6 @@
+&AE_nml
+
+AE_SPECIES_DATA = 
+
+!SPECIES    ,MOLWT  ,Aitken ,Accum ,Coarse ,OPTICS ,IC ,IC_FAC ,BC ,BC_FAC ,DRYDEP SURR ,FAC ,WET-SCAV SURR,FAC ,AE2AQ SURR ,TRNS    ,DDEP    ,WDEP    ,CONC,!RepCmp,ExplicitorLumped,DTXSID,SMILES
+/   

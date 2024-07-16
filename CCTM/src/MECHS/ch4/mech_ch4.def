@@ -1,0 +1,25 @@
+! add documentation header later
+
+CH4
+
+REACTIONS[CM] = 
+
+! rate from cracmm2
+!<R001> ECH4 + OH = LCH4OH  # 2.45E-12 @ 1775.;
+! temporary rate that incorporates fixed OH of 2e6 molecules/cm3
+<R001> ECH4      = LCH4OH  # 4.9E-06 @ 1775;
+! rate from Sergey mech def (cb6 rate?) 
+!<R002> ECH4 + CL = LCH4CL  # 6.6E-12 @ 1240;
+! temporary rate that incorporates a fixed Cl of 2e4 molecules/cm3
+<R002> ECH4 +    = LCH4CL  # 1.32E-07 @ 1240;
+
+END MECH
+
+CONSTANTS
+<C1> ATM_AIR = 1.0E+06
+<C2> ATM_H2  = 0.56
+<C3> ATM_N2  = 0.7808E+06
+<C4> ATM_O2  = 0.2095E+06
+<C5> ATM_CH4 = 1.85
+END CONSTANTS
+

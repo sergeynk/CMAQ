@@ -162,7 +162,7 @@
 
                                                                         ! CB SAPRC  CRACMM  
         ! Inorganic Gases
-        Desid_Emvar_Table(  1) = desid_legend( 'CH4          ' ,016.0 ) ! x
+        Desid_Emvar_Table(  1) = desid_legend( 'ECH4         ' ,016.0 ) ! x           x
         Desid_Emvar_Table(  2) = desid_legend( 'CL2          ' ,071.0 ) ! x    x
         Desid_Emvar_Table(  3) = desid_legend( 'CO           ' ,028.0 ) ! x    x      x
         Desid_Emvar_Table(  4) = desid_legend( 'HCL          ' ,036.5 ) ! x    x      x

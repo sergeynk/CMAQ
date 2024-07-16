@@ -1,0 +1,51 @@
+!------------------------------------------------------------------------------!
+! Emission Control Interface                                                   !
+!    for the                                                                   !
+! Detailed Emissions Scaling, Isolation, and Diagnostics (DESID) Module,       !
+!    part of the                                                               !
+! Community Multiscale Air Quality (CMAQ) Model                                !
+!    developed and maintained by the                                           !
+! Center for Environmental Measurement and Modeling (CEMM),                    !
+! Office of Research and Development (ORD)                                     !
+! U.S. Environmental Protection Agency (USEPA)                                 !
+!                                                                              !
+! This namelist is consistent with CMAQv5.4 (Release AUGUST 2022)              !
+!                                                                              !
+! See CMAQ User's Guide Appendix B (https://github.com/USEPA/CMAQ/blob/main/   !
+!     DOCS/Users_Guide/Appendix/CMAQ_UG_appendixB_emissions_control.md)        !
+!     and Murphy et al., Geoscientific Model Development, 14, 3407-3420,       !
+!     https://doi.org/10.5194/gmd-14-3407-2021, 2021.                          !
+!------------------------------------------------------------------------------!
+
+!------------------------------------------------------------------------------!
+! Emissions Scaling Rule Specification Component                               !
+!   Each rule is presented as a row of inputs. The syntax of the               !
+!   emissions scaling rules is the following:                                  !
+!      EM_INSTR(I) = 'Region Label', 'Stream Label', 'Emission-Species',       !
+!                     'CMAQ-Species', 'Phase/Mode', 'Scale Factor', 'Basis',   !
+!                     'Operation'                                              !
+!                                                                              !
+!    See the User's Guide for detailed definitions of each field.              !
+!                                                                              !
+!    You may confirm the effect of the (default and custom) rules below by     !
+!       inspecting the processor-dependent log files ("CTM_LOG_XXX...")        !
+!                                                                              !
+!    Note: If no rules are provided for a species, then there is no emission   !
+!       of that species.                                                       !
+!------------------------------------------------------------------------------!
+&Desid_ScalingVars
+ Desid_Max_Rules = 2500
+/
+
+&Desid_Scaling
+ Desid_Rules_nml =
+ ! Region      | Stream Label  |Emission | CMAQ-        |Phase/|Scale |Basis |Op  
+ !  Label      |               |Surrogate| Species      |Mode  |Factor|      |     
+                                                                             
+                            !> DEFAULT MAPPING <!                  
+   ! Note: Without default mapping for a species, 
+   !       there is no emission of that species.
+   ! MOLE Basis will map g/s on emission file to mol/s in CMAQ
+   'EVERYWHERE', 'ALL'         ,'ECH4'   ,'ECH4'        ,'GAS'  ,1.  ,'MOLE','a',
+
+/

@@ -571,6 +571,7 @@ C Store Deposition Change in Budget and Process Analysis Arrays
       IF ( BUDGET_DIAG .OR. LIPR ) THEN
          DDEP_PA = 0.0
          DO V = 1, N_SPC_DEPV
+#ifndef carbon
             IF ( ABFLUX .AND. V .EQ. DD2DV(NH3_HIT) ) THEN 
                ! For Ammonia, take Bidirectional Flux into account
                ! if those processes are implemented
@@ -581,13 +582,16 @@ C Store Deposition Change in Budget and Process Analysis Arrays
                   END DO
                END DO
             ELSE
+#endif
                ! All other species
                DO R = 1, NROWS
                   DO C = 1, NCOLS
                      DDEP_PA( C,R,MAP_DEPVtoCGRID(V)) = DDEP( V,C,R ) - DDEP0( V,C,R )
                   END DO
                END DO
+#ifndef carbon
             END IF
+#endif
          END DO
          CALL PA_UPDATE_DDEP ( DDEP_PA, JDATE, JTIME, TSTEP )
       END IF

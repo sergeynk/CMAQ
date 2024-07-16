@@ -331,8 +331,9 @@ c..Open file for solver stats if requested
 #endif
 
 C..Initialize shared photolysis data
+#ifndef carbon
          CALL INIT_PHOT_SHARED()
-
+#endif
          ALLOCATE( BLKHET( BLKSIZE, NHETERO ) )
 
 C Determine whether DEGRADE rountines are needed.
@@ -724,7 +725,9 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       END IF
        
       !Update Aerosol Surface Area
+#ifndef carbon
       CALL HETCHEM_UPDATE_AERO( CONC )
+#endif
 
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 C  Output performance statistics if required and return

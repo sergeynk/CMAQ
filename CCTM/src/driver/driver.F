@@ -420,7 +420,9 @@ C Initialize ddm3d calculations
          CALL INIT_DDM3D
 #endif
 
+#ifndef carbon
         CALL MAP_AERO()
+#endif
 
 #ifdef verbose_driver
          write( logdev,* ) ' MYPE -> NSPCS:    ', mype, nspcsd

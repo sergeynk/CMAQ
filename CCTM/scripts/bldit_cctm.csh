@@ -140,6 +140,10 @@ set make_options = "-j"                #> additional options for make command if
  else if ( ${Mechanism} =~ *cracmm* ) then  #> CRACMM family of aero and cloud chem
      set ModAero    = aero/cracmm           # > aerosol chemistry module (see $CMAQ_MODEL/CCTM/src/aero)
      set ModCloud   = cloud/acm_cracmm      # > cloud chemistry module (see $CMAQ_MODEL/CCTM/src/cloud)
+  else if ( ${Mechanism} == ch4 || ${Mechanism} == carbon ) then
+     # not needed for carbon mechanisms but variables are needed for build process
+     set ModAero   = aero/aero7
+     set ModCloud  = cloud/acm_ae7
  endif
 
  # Special cloud modules for kmt versions
@@ -152,6 +156,8 @@ set make_options = "-j"                #> additional options for make command if
  # Gas chem solver
  if ( ${Mechanism} == cb6r5m_ae7_aq ) then  #> Gas-phase chemistry solver options ($CMAQ_MODEL/CCTM/src/gas)
      setenv ChemSolver ros3                  #> ros3 (or smvgear) are system independent
+ else if ( ${Mechanism} == ch4 || ${Mechanism} == carbon ) then
+     setenv ChemSolver ros3
  else                                      
      setenv ChemSolver ebi                   #> [ default for most mechanisms: ebi ]
  endif
@@ -299,7 +305,14 @@ set make_options = "-j"                #> additional options for make command if
  else
     set SENS = ""
  endif
- 
+
+ #> if using carbon or ch4 simulation, add pre-processor flag
+ if ( ${Mechanism} == ch4 || ${Mechanism} == carbon ) then
+    set CARBON = ( -Dcarbon )
+ else
+    set CARBON = ""
+ endif
+
 #> Build Mechanism Files and instruct build-make to look
 #> in the CHEMMECH output folder for the files
  if ( $?build_mech ) then
@@ -470,7 +483,7 @@ set Cfile = ${Bld}/${CFG}.bld      # Config Filename
  echo                                                              >> $Cfile
  echo "lib_4       ioapi/lib;"                                     >> $Cfile
  echo                                                              >> $Cfile
- set text = "$quote$CPP_FLAGS $PAR $SENS $PIO $cpp_depmod $STX1 $STX2$quote;"
+ set text = "$quote$CPP_FLAGS $PAR $SENS $PIO $cpp_depmod $CARBON $STX1 $STX2$quote;"
  echo "cpp_flags   $text"                                          >> $Cfile
  echo                                                              >> $Cfile
  echo "f_compiler  $FC;"                                           >> $Cfile

@@ -377,11 +377,13 @@ C Read & interpolate boundary concentrations
       !the User if They Are Not Robust.
       !This routine outputs aerosol surface area consistent with
       !the BC_AERO_M2WET specification.
+#ifndef carbon
       DO BND = 1,NBNDY
         CALL CHECK_AERO_ICBC( BCON( BND,STRT:FINI ), BC_AERO_M2WET,
      &                        BC_AERO_M2USE, .TRUE., 
      &                        L_WRITE_WARNING,1,BND,LVL )
       END DO
+#endif
 
 #ifdef verbose_rdbcon
       if ( lvl .eq. 1 ) then

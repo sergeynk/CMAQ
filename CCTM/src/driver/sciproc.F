@@ -281,17 +281,21 @@ C-----------------------------------------------------------------------
       END IF ! Not Column Model
       
       ! Calculate Photolysis Rates
+#ifndef carbon
       CALL PHOT ( CGRID, JDATE, JTIME, TSTEP )
       IF ( CKSUM ) CALL CKSUMMER ( 'PHOT', CGRID, JDATE, JTIME )
       IF ( PRINT_PROC_TIME ) CALL TIMING_SPLIT ( CPU_TIME_START, 1, 'PHOT' )
+#endif
 
       ! Calculate Cloud Scavening and Chemistry
+#ifndef carbon
       CALL CLDPROC ( CGRID, JDATE, JTIME, TSTEP )
       IF ( CKSUM ) CALL CKSUMMER ( 'CLDPROC', CGRID, JDATE, JTIME )
 #ifndef mpas
       IF ( BUDGET_DIAG .OR. LIPR ) CALL PA_UPDATE_PROC ( IPR_CLDS, CGRID, SDATE, STIME, TSTEP, .FALSE. )
 #endif
       IF ( PRINT_PROC_TIME ) CALL TIMING_SPLIT ( CPU_TIME_START, 1, 'CLDPROC' )
+#endif
 
       ! Calculate Gas- and Particle-Phase Chemistry
       IF ( STM ) CALL STM_WRAP_GAS ( CGRID, JDATE, JTIME, .TRUE. )
@@ -319,6 +323,7 @@ C-----------------------------------------------------------------------
 #endif
 
       ! Calculate Aerosol Microphysics
+#ifndef carbon
       CALL AERO ( CGRID, JDATE, JTIME, TSTEP )
 #ifdef isam
       CALL SA_WRAP_AE( CGRID0, CGRID, JDATE, JTIME, TSTEP )
@@ -329,6 +334,7 @@ C-----------------------------------------------------------------------
       IF ( BUDGET_DIAG .OR. LIPR ) CALL PA_UPDATE_AERO ( CGRID, SDATE, STIME )
 #endif
       IF ( PRINT_PROC_TIME ) CALL TIMING_SPLIT ( CPU_TIME_START, 1, 'AERO' )
+#endif
 
       ! Advance Time Step
       CALL NEXTIME ( JDATE, JTIME, TSTEP( 2 ) )

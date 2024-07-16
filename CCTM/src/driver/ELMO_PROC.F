@@ -3067,8 +3067,9 @@
      &     ( L.LE.INST_LAYER_TOP .OR. L.LE.AVRG_LAYER_TOP ) ) THEN
        
         ! Calculate All Aerosol Size Distribution Parameters
+#ifndef carbon
         CALL CALC_AERODIST_PARAMS( INIT_TIME )
-      
+#endif
         ! Loop Through Used Parameters List and Call ELMO Functions 
         ! to fill in Local Array. ELMO_LOCAL is the same length as the
         ! ELMO_LIST and is ordered by the ELMO ID numbers so that it
@@ -3263,8 +3264,10 @@
       call interpolate_var ('ZH', jdate, jtime, ZHS)
 
       ! Calculate Heterogeneous Chemistry Rates
+#ifndef carbon
       CALL INIT_PHOT_SHARED()
       CALL HETCHEM_RATES( TA, PRES, QV, CGRID, DENS )
+#endif
 
       ! Process PM Diagnostics for Base Model
       DO C = 1,NCOLS
@@ -3294,13 +3297,15 @@
          PV       = PVS( C,R,L )
  
          ! Extract Aerosols
+#ifndef carbon
 #ifdef sens
          CALL EXTRACT_AERO( CGRID( C,R,L,: ), .TRUE., SENGRID( C,R,L,:,: ), .TRUE. )
          CALL EXTRACT_SOA( CGRID( C,R,L,: ), SENGRID( C,R,L,:,: ), .TRUE. )
 #else
          CALL EXTRACT_AERO( CGRID( C,R,L,: ), .TRUE. )
          CALL EXTRACT_SOA( CGRID( C,R,L,: ) )
-#endif         
+#endif
+#endif
          ! Populate Diagnostic Arrays
          CALL LOAD_ELMO( C,R,L, CGRID(C,R,L,:), WRITE_STEP, INIT_STEP, INIT_TIME )
 

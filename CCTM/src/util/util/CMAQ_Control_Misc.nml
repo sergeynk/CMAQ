@@ -76,23 +76,23 @@
 !------------------------------------------------------------------------------!
 
 &elmo_activate
-  instant = .FALSE.
+  instant = .TRUE.
   average = .TRUE.
 /
 
 &elmo_inst
-  Inst_Layer_Top = 1
+  Inst_Layer_Top = 35
   Inst_Layer_Bot = 1
-  Inst_Vars_Nml  = 'DEFAULT'
+  Inst_Vars_Nml  = 'ECH4'
   
 ! Example for limited output
 ! Inst_Vars_Nml = 'NO2', 'FORM', 'SO2', 'O3', 'PM25', 'PM10', 'DENS', 'NOX', 'AOD_550'
 /
 
 &elmo_avrg
-  Avrg_Layer_Top = 1
+  Avrg_Layer_Top = 35
   Avrg_Layer_Bot = 1
-  Avrg_Vars_Nml  = 'DEFAULT'
+  Avrg_Vars_Nml  = 'ECH4'
 
 ! Example for limited output
 ! Avrg_Vars_Nml = 'NO2', 'FORM', 'SO2', 'O3', 'PM25', 'PM10', 'DENS', 'NOX', 'AOD_550'

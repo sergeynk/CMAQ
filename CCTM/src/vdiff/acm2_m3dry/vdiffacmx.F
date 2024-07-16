@@ -631,7 +631,9 @@ C-----------------------------------------------------------------------
             END DO
 #endif
          END DO
+#ifndef carbon
          PLDV_HONO = PLDV( HONO_HIT,C,R )
+#endif
 #ifdef sens
          DO NP = 1, NPMAX
             S_PLDV_HONO( NP ) = S_PLDV( NP,HONO_HIT,C,R )

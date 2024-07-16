@@ -1,0 +1,14 @@
+&GC_nml
+
+GC_SPECIES_DATA = 
+
+!SPECIES        ,MOLWT   ,IC     ,IC_FAC ,BC     ,BC_FAC ,DRYDEP SURR       ,FAC  ,WET-SCAV SURR     ,FAC ,GC2AE SURR     ,GC2AQ SURR,TRNS  ,DDEP  ,WDEP  ,CONC ,
+'ECH4'          , 16.0   ,''     ,-1    ,''      ,-1     ,'VD_METHANE'      , 1   ,'METHANE'         , 1  ,''             ,''        ,'Yes' ,'Yes' ,'Yes' ,'Yes',
+'CO2'           , 44.0   ,''     ,-1     ,''     ,-1     ,''                ,-1   ,''                ,-1  ,''             ,''        ,'Yes' ,''    ,''    ,'Yes',
+'CO'            , 28.0   ,''     ,-1     ,''     ,-1     ,'VD_CO'           , 1   ,'CO'              , 1  ,''             ,''        ,'Yes' ,'Yes' ,'Yes' ,'Yes',
+'LCH4OH'        , 16.0   ,''     ,-1    ,''      ,-1     ,''                ,-1   ,''                ,-1  ,''             ,''        ,''    ,''    ,''    ,'Yes',
+'LCH4CL'        , 16.0   ,''     ,-1    ,''      ,-1     ,''                ,-1   ,''                ,-1  ,''             ,''        ,''    ,''    ,''    ,'Yes',
+'LCOOH'         , 28.0   ,''     ,-1    ,''      ,-1     ,''                ,-1   ,''                ,-1  ,''             ,''        ,''    ,''    ,''    ,'Yes',
+'PCOCH4'        , 28.0   ,''     ,-1    ,''      ,-1     ,''                ,-1   ,''                ,-1  ,''             ,''        ,''    ,''    ,''    ,'Yes',
+'PCO2CO'        , 44.0   ,''     ,-1    ,''      ,-1     ,''                ,-1   ,''                ,-1  ,''             ,''        ,''    ,''    ,''    ,'Yes',
+/

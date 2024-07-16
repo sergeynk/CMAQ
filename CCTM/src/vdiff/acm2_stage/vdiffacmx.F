@@ -596,7 +596,9 @@ C-----------------------------------------------------------------------
                TMP_BD_EMIS( HONO_E ) = TOT_BD_EMIS( HONO_E,C,R )
             END IF                     
          END DO
+#ifndef carbon
          PLDV_HONO = Tile_Data%Bidi_Emis( C, R, Tile_Data%dep2vdiff( HONO_HIT ) )
+#endif
 
 #ifdef isam
          DO JSPCTAG = 1, N_SPCTAG

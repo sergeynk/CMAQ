@@ -270,6 +270,18 @@ C-----------------------------------------------------------------------
      
       END IF
 
+#ifdef carbon
+      ! only check GC species for carbon simulations
+      WRITE( LOGDEV,1005 ) SCIPROC,
+     &                     GC_CKSUM / LCELLS,
+     &                     AE_CKSUM / LCELLS,
+     &                     NR_CKSUM / LCELLS
+      IF ( ( GC_CKSUM .NE. GC_CKSUM ) .OR. ( GC_CKSUM*2. .EQ. GC_CKSUM ) ) THEN
+           WRITE( OUTDEV, '(7x,A,A)' ),'NaN or Infinity detected on processor ',TRIM(CMYPE)
+           WRITE( OUTDEV,1009 ) SCIPROC,GC_CKSUM/LCELLS
+           CALL M3EXIT( PNAME, jdate, jtime,'NaN or Infinity detected in '//SCIPROC, 1 )
+      END IF
+#else
       IF ( N_TR_SPC .EQ. 0 ) THEN
          WRITE( LOGDEV,1005 ) SCIPROC,
      &                        GC_CKSUM / LCELLS,
@@ -298,6 +310,7 @@ C-----------------------------------------------------------------------
               CALL M3EXIT( PNAME, jdate, jtime,'NaN or Infinity detected in '//SCIPROC, 1 )
          END IF
       END IF
+#endif
 
       RETURN
 
