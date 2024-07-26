@@ -932,7 +932,6 @@ C...  threshold
       WHERE ( RAIN .GE. RTHRESH ) CONV_DEP( :,:,N_SPC_WDEP + 6 ) = 1.0
 
 C...Loop through all grid cells
-
       DO ROW = 1, NROWS
         DO COL = 1, NCOLS
 
@@ -953,8 +952,13 @@ C...Loop through all grid cells
             DZZL( LAY )  = DZZ( COL,ROW,LAY )
             DENSL( LAY ) = PRESL( LAY )
      &                   / ( RDGAS * TAL( LAY ) * ( 1.0 + RWVAP * QVL( LAY ) / RDGAS ) )
+#ifdef carbon
+            JH2O2( LAY ) = 0.0
+            JHNO3( LAY ) = 0.0
+#else
             JH2O2( LAY ) = RJ_SUB( COL,ROW,LAY,LH2O2_PHOTOLYSIS )
             JHNO3( LAY ) = RJ_SUB( COL,ROW,LAY,LHNO3_PHOTOLYSIS )
+#endif
           END DO
 
 C...load aerosol minimum concentrations into the "CONCMINL" array
@@ -2023,10 +2027,11 @@ C...  mimic this for the ASO4GASJ tracking species
               CEND( AEROSPC_MAP( ASO4GAS_IDX, 2 ) ) = POLC( AEROSPC_MAP( ASO4GAS_IDX, 2 ) )
             END IF
 
+#ifndef carbon
             CALL AQ_MAP ( JDATE, JTIME, WTBAR, WCBAR, TBARC, PBARC,
      &                    CTHK1, AIRM, PRATE1, DTCLD, POLC, CEND,
      &                    REMOV, REMOVAC, ALFA0, ALFA2, ALFA3, COSZ )
-
+#endif
 
 #ifdef isam
             DO SPC = 1, NSPC_SA ! general case

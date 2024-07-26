@@ -288,14 +288,12 @@ C-----------------------------------------------------------------------
 #endif
 
       ! Calculate Cloud Scavening and Chemistry
-#ifndef carbon
       CALL CLDPROC ( CGRID, JDATE, JTIME, TSTEP )
       IF ( CKSUM ) CALL CKSUMMER ( 'CLDPROC', CGRID, JDATE, JTIME )
 #ifndef mpas
       IF ( BUDGET_DIAG .OR. LIPR ) CALL PA_UPDATE_PROC ( IPR_CLDS, CGRID, SDATE, STIME, TSTEP, .FALSE. )
 #endif
       IF ( PRINT_PROC_TIME ) CALL TIMING_SPLIT ( CPU_TIME_START, 1, 'CLDPROC' )
-#endif
 
       ! Calculate Gas- and Particle-Phase Chemistry
       IF ( STM ) CALL STM_WRAP_GAS ( CGRID, JDATE, JTIME, .TRUE. )

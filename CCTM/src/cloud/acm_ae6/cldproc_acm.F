@@ -506,10 +506,10 @@ c                 ENDIF
 #endif
 
 C...compute cloud effects for the resolved clouds and resolved rainwater
-
+#ifndef carbon
       CALL RESCLD ( CGRD, JDATE, JTIME, TSTEP,
      &              TOT_DEP, RESTRANS )
-
+#endif
 C...compute cloud effects for convective (subgrid) clouds
 
       CALL CONVCLD_ACM ( CGRD, JDATE, JTIME, TSTEP,

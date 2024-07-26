@@ -76,7 +76,7 @@
 !------------------------------------------------------------------------------!
 
 &elmo_activate
-  instant = .TRUE.
+  instant = .FALSE.
   average = .TRUE.
 /
 
@@ -92,7 +92,7 @@
 &elmo_avrg
   Avrg_Layer_Top = 35
   Avrg_Layer_Bot = 1
-  Avrg_Vars_Nml  = 'ECH4'
+  Avrg_Vars_Nml  = 'ECH4','SATMET'
 
 ! Example for limited output
 ! Avrg_Vars_Nml = 'NO2', 'FORM', 'SO2', 'O3', 'PM25', 'PM10', 'DENS', 'NOX', 'AOD_550'
