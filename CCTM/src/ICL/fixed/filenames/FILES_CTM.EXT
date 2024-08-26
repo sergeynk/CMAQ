@@ -36,7 +36,7 @@
 !                            BNDY_SENS_1, remove REGIONS_1
 !.......................................................................
 
-      INTEGER, PARAMETER :: N_FILES = 62
+      INTEGER, PARAMETER :: N_FILES = 63
 
       CHARACTER( 16 ) :: LGCL_NAME( N_FILES ) 
       LOGICAL            IN_MODE( N_FILES )
@@ -61,7 +61,7 @@
       CHARACTER( 16 ) :: E2C_CHEM_YEST ! BIDI NH3 Config.
       CHARACTER( 16 ) :: E2C_SOIL      ! BIDI NH3 Config.
       CHARACTER( 16 ) :: E2C_LU        ! BIDI NH3 Config.
-
+      CHARACTER( 16 ) :: CHEM_FIELD_FILE ! Chemical field replacement
 
 ! CCTM Output Files:
 
@@ -190,6 +190,7 @@
       DATA  SA_ACONC_1      / 'SA_ACONC_1      ' /
       DATA  SA_DD_1         / 'SA_DD_1         ' /
       DATA  SA_WD_1         / 'SA_WD_1         ' /
+      DATA  CHEM_FIELD_FILE / 'CHEM_FIELD_FILE ' /
 
       DATA LGCL_NAME(  1 ), IN_MODE(  1 )    / 'GRID_DOT_2D     ', .TRUE. /
       DATA LGCL_NAME(  2 ), IN_MODE(  2 )    / 'GRID_CRO_2D     ', .TRUE. /
@@ -253,5 +254,6 @@
       DATA LGCL_NAME( 60 ), IN_MODE( 60 )    / 'SA_ACONC_1      ', .FALSE. /
       DATA LGCL_NAME( 61 ), IN_MODE( 61 )    / 'SA_DD_1         ', .FALSE. /
       DATA LGCL_NAME( 62 ), IN_MODE( 62 )    / 'SA_WD_1         ', .FALSE. /
+      DATA LGCL_NAME( 63 ), IN_MODE( 63 )    / 'CHEM_FIELD_FILE ', .FALSE. /
 
 !................   end   FILES_CTM.EXT   .............................
